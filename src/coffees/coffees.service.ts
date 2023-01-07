@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { Coffee } from '@prisma/client';
 import { UserInputError } from 'apollo-server-express';
-import { CreateCoffeeInput, UpdateCoffeeInput } from 'src/graphql';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { CreateCoffeeInput } from './dto/create-coffee.input';
+import { UpdateCoffeeInput } from './dto/update-coffee.input';
 
 @Injectable()
 export class CoffeesService {

@@ -1,4 +1,3 @@
-
 /*
  * -------------------------------------------------------
  * THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
@@ -9,33 +8,33 @@
 /* eslint-disable */
 
 export class CreateCoffeeInput {
-    name: string;
-    brand: string;
-    flavors: string[];
+  name: string;
+  brand: string;
+  flavors: string[];
 }
 
 export class UpdateCoffeeInput {
-    name?: Nullable<string>;
-    brand?: Nullable<string>;
-    flavors?: Nullable<string[]>;
+  name?: Nullable<string>;
+  brand?: Nullable<string>;
+  flavors?: Nullable<string[]>;
 }
 
 export class Coffee {
-    id: number;
-    name: string;
-    brand: string;
-    flavors?: Nullable<string[]>;
+  id: number;
+  name: string;
+  brand: string;
+  flavors?: Nullable<string[]>;
 }
 
 export abstract class IQuery {
-    coffees: Coffee[];
-    coffee: Coffee;
+  coffees: Coffee[];
+  coffee: Coffee;
 }
 
 export abstract class IMutation {
-    createCoffee: Coffee;
-    updateCoffee: Coffee;
-    removeCoffee: Coffee;
+  createCoffee: Coffee;
+  updateCoffee: Coffee;
+  removeCoffee: Coffee;
 }
 
 type Nullable<T> = T | null;

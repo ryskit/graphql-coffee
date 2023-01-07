@@ -1,7 +1,9 @@
 import { ParseIntPipe } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { Coffee, CreateCoffeeInput, UpdateCoffeeInput } from 'src/graphql';
+import { Coffee } from 'src/graphql';
 import { CoffeesService } from './coffees.service';
+import { CreateCoffeeInput } from './dto/create-coffee.input';
+import { UpdateCoffeeInput } from './dto/update-coffee.input';
 
 @Resolver()
 export class CoffeesResolver {
