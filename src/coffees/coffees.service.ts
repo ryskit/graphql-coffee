@@ -18,7 +18,7 @@ export class CoffeesService {
     const coffees = await this.prisma.coffee.findMany({
       include: {
         flavors: {
-          select: {
+          include: {
             flavor: true,
           },
         },
