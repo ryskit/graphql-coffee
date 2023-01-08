@@ -7,6 +7,8 @@ import { CoffeesModule } from './coffees/coffees.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { DateScalar } from './common/scalars/date.scalar';
+import { Tea } from './graphql';
+import { DrinksModule } from './drinks/drinks.module';
 
 @Module({
   imports: [
@@ -16,9 +18,13 @@ import { DateScalar } from './common/scalars/date.scalar';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       typePaths: ['./**/*.graphql'],
+      buildSchemaOptions: {
+        orphanedTypes: [Tea],
+      },
     }),
     CoffeesModule,
     PrismaModule,
+    DrinksModule,
   ],
   controllers: [AppController],
   providers: [AppService, DateScalar],
