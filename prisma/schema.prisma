@@ -11,22 +11,23 @@ datasource db {
 }
 
 model Coffee {
-  id Int @id @default(autoincrement())
-  name String
-  brand String
-  flavors FlavorsOnCoffees[]
+  id        Int                @id @default(autoincrement())
+  name      String
+  brand     String
+  flavors   FlavorsOnCoffees[]
+  createdAt DateTime? @default(now())
 }
 
 model Flavor {
-  id Int @id @default(autoincrement())
-  name String
+  id      Int                @id @default(autoincrement())
+  name    String
   coffees FlavorsOnCoffees[]
 }
 
 model FlavorsOnCoffees {
-  coffee Coffee @relation(fields: [coffeeId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  coffee   Coffee @relation(fields: [coffeeId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   coffeeId Int
-  flavor Flavor @relation(fields: [flavorId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  flavor   Flavor @relation(fields: [flavorId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   flavorId Int
 
   @@id([coffeeId, flavorId])

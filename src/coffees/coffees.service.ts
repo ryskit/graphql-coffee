@@ -27,6 +27,7 @@ export class CoffeesService {
         name: c.name,
         brand: c.brand,
         flavors: c.flavors.map((e) => e['flavor']),
+        createdAt: c.createdAt,
       };
     });
   }
@@ -54,6 +55,7 @@ export class CoffeesService {
       name: coffee.name,
       brand: coffee.brand,
       flavors: coffee.flavors.map((e) => e['flavor']),
+      createdAt: coffee.createdAt,
     };
   }
 
@@ -90,6 +92,7 @@ export class CoffeesService {
       name: coffee.name,
       brand: coffee.brand,
       flavors: coffee.flavors.map((f) => f['flavor']),
+      createdAt: coffee.createdAt,
     };
   }
 
@@ -166,6 +169,7 @@ export class CoffeesService {
       name: coffee.name,
       brand: coffee.brand,
       flavors: result.flavors.map((f) => f.flavor),
+      createdAt: coffee.createdAt,
     };
   }
 
@@ -188,6 +192,7 @@ export class CoffeesService {
       name: deletedCoffee.name,
       brand: deletedCoffee.brand,
       flavors: deletedCoffee.flavors.map((f) => f['flavor']),
+      createdAt: deletedCoffee.createdAt,
     };
   }
 

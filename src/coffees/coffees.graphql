@@ -1,3 +1,5 @@
+scalar Date
+
 """
 Coffee model
 """
@@ -6,6 +8,7 @@ type Coffee {
   name: String!
   brand: String!
   flavors: [Flavor!]!
+  createdAt: Date
 }
 
 type Flavor {
