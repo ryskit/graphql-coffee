@@ -10,7 +10,6 @@ export class DateScalar implements CustomScalar<number, Date> {
   }
 
   serialize(value: Date): number {
-    console.log(`Serializing: ${value}`);
     return value.getTime();
   }
 

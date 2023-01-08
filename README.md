@@ -67,4 +67,5 @@ yarn add @prisma/client
 yarn add @nestjs/config
 yarn add class-validator class-transformer
 yarn add graphql-subscriptions
+yarn add dataloader
 ```

@@ -15,22 +15,14 @@ export class CoffeesService {
   ) {}
 
   async findAll(): Promise<Coffee[]> {
-    const coffees = await this.prisma.coffee.findMany({
-      include: {
-        flavors: {
-          include: {
-            flavor: true,
-          },
-        },
-      },
-    });
+    const coffees = await this.prisma.coffee.findMany();
 
     return coffees.map((c) => {
       return {
         id: c.id,
         name: c.name,
         brand: c.brand,
-        flavors: c.flavors.map((e) => e['flavor']),
+        flavors: [],
         createdAt: c.createdAt,
         type: this.getCoffeeType(c.type),
       };
@@ -42,13 +34,6 @@ export class CoffeesService {
       where: {
         id,
       },
-      include: {
-        flavors: {
-          select: {
-            flavor: true,
-          },
-        },
-      },
     });
 
     if (!coffee) {
@@ -59,7 +44,7 @@ export class CoffeesService {
       id: coffee.id,
       name: coffee.name,
       brand: coffee.brand,
-      flavors: coffee.flavors.map((e) => e['flavor']),
+      flavors: [],
       createdAt: coffee.createdAt,
       type: this.getCoffeeType(coffee.type),
     };
