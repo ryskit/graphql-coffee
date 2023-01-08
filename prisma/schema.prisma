@@ -16,7 +16,14 @@ model Coffee {
   brand     String
   flavors   FlavorsOnCoffees[]
   createdAt DateTime? @default(now())
+  type CoffeeType?
 }
+
+enum CoffeeType {
+  ARABICA
+  ROBUSTA
+}
+
 
 model Flavor {
   id      Int                @id @default(autoincrement())

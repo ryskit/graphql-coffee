@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { Flavor, Prisma } from '@prisma/client';
+import { Flavor, CoffeeType as PrismaCoffeeType } from '@prisma/client';
 import { UserInputError } from 'apollo-server-express';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateCoffeeInput } from './dto/create-coffee.input';
 import { UpdateCoffeeInput } from './dto/update-coffee.input';
-import { Coffee } from 'src/graphql';
+import { Coffee, CoffeeType } from 'src/graphql';
 
 @Injectable()
 export class CoffeesService {
@@ -28,6 +28,7 @@ export class CoffeesService {
         brand: c.brand,
         flavors: c.flavors.map((e) => e['flavor']),
         createdAt: c.createdAt,
+        type: this.getCoffeeType(c.type),
       };
     });
   }
@@ -56,6 +57,7 @@ export class CoffeesService {
       brand: coffee.brand,
       flavors: coffee.flavors.map((e) => e['flavor']),
       createdAt: coffee.createdAt,
+      type: this.getCoffeeType(coffee.type),
     };
   }
 
@@ -66,8 +68,7 @@ export class CoffeesService {
 
     const coffee = await this.prisma.coffee.create({
       data: {
-        name: createCoffeeInput.name,
-        brand: createCoffeeInput.brand,
+        ...createCoffeeInput,
         flavors: {
           createMany: {
             data: flavors.map((flv) => {
@@ -93,6 +94,7 @@ export class CoffeesService {
       brand: coffee.brand,
       flavors: coffee.flavors.map((f) => f['flavor']),
       createdAt: coffee.createdAt,
+      type: this.getCoffeeType(coffee.type),
     };
   }
 
@@ -170,6 +172,7 @@ export class CoffeesService {
       brand: coffee.brand,
       flavors: result.flavors.map((f) => f.flavor),
       createdAt: coffee.createdAt,
+      type: this.getCoffeeType(coffee.type),
     };
   }
 
@@ -193,6 +196,7 @@ export class CoffeesService {
       brand: deletedCoffee.brand,
       flavors: deletedCoffee.flavors.map((f) => f['flavor']),
       createdAt: deletedCoffee.createdAt,
+      type: this.getCoffeeType(deletedCoffee.type),
     };
   }
 
@@ -212,5 +216,16 @@ export class CoffeesService {
         name,
       },
     });
+  }
+
+  private getCoffeeType(type: PrismaCoffeeType | null): CoffeeType | null {
+    switch (type) {
+      case null:
+        return null;
+      case PrismaCoffeeType.ARABICA:
+        return CoffeeType.ARABICA;
+      case PrismaCoffeeType.ROBUSTA:
+        return CoffeeType.ROBUSTA;
+    }
   }
 }

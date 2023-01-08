@@ -1,10 +1,10 @@
 import { Query, ResolveField, Resolver } from '@nestjs/graphql';
-import { Coffee, Drink, Tea } from 'src/graphql';
+import { Coffee, Drink, DrinksResult, Tea } from 'src/graphql';
 
-@Resolver('Drink')
+@Resolver('DrinksResult')
 export class DrinksResolver {
   @Query('drinks')
-  async findAll(): Promise<Drink[]> {
+  async findAll(): Promise<DrinksResult[]> {
     const coffee = new Coffee();
     coffee.id = 1;
     coffee.name = 'Colombia';
