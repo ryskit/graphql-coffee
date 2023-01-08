@@ -33,6 +33,12 @@ $ yarn test:e2e
 $ yarn test:cov
 ```
 
+## Prisma
+
+```
+yarn prisma migrate dev --name [file_name]
+```
+
 ## Generate GraphQL Code
 
 ```bash

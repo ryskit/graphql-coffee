@@ -23,7 +23,12 @@ export class Coffee {
   id: number;
   name: string;
   brand: string;
-  flavors?: Nullable<string[]>;
+  flavors: Flavor[];
+}
+
+export class Flavor {
+  id: number;
+  name: string;
 }
 
 export abstract class IQuery {
