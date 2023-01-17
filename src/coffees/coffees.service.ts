@@ -30,7 +30,7 @@ export class CoffeesService {
   }
 
   async findOne(id: number): Promise<Coffee> {
-    const coffee = await this.prisma.coffee.findFirst({
+    const coffee = await this.prisma.coffee.findUnique({
       where: {
         id,
       },
